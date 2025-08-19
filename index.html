@@ -343,11 +343,9 @@
 </head>
 <body>
   <!-- AUDIO (autoplay may be blocked until user interacts) -->
- <audio autoplay loop>
-    <source src="koitumsanahi.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
+<audio id="bgMusic" loop>
+  <source src="https://rushikulkarni97-code.github.io/dipabirthday/koitumsanahi.mp3" type="audio/mpeg">
+</audio>
 
 	
   <div class="card" id="mainCard">
@@ -462,16 +460,16 @@
 
    
     const quotes = [
-      "Mazi babdi tu❤️",
+      "Mazi babddi tu❤️",
       "Mazi chabdi tu❤️",
       "Maza baal tu❤️",
       "Mazi sundari tu❤️",
       "Maza jiwan tu❤️",
       "Maza shwas tu❤️",
-      "Maza dhyas tu💞",
+      "Maza dhyasss tu💞",
       "Maza sarwasva tu❤️🎶"
     ];
-    const QUOTE_INTERVAL_MS = 30000;
+    const QUOTE_INTERVAL_MS = 3000;
 
    
     /* =========================
@@ -568,8 +566,8 @@
       showSlide(slideIndex);
       // start auto-play
       autoPlayTimer = setInterval(()=>changeSlide(1), 3500);
-      // allow music start on click
-      safePlay();
+     
+      
     }
     function closeModal(){
       modal.style.display = "none";
@@ -624,13 +622,10 @@
 function closeGift() {
   document.getElementById("giftModal").style.display = "none";
 }
-document.addEventListener("click", () => {
-  const audio = document.getElementById("favSong");
-  audio.play().then(() => {
-    audio.pause();  // immediately pause, just unlocks permission
-  }).catch(()=>{});
-  
-  document.removeEventListener("click", arguments.callee);
+document.addEventListener("click", function startMusic() {
+    const audio = document.getElementById("bgMusic");
+    audio.play().catch(()=>{}); // try play
+    document.removeEventListener("click", startMusic); // only run once
 });
   </script>
 </body>
