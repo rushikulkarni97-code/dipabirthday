@@ -376,15 +376,15 @@
 
     <div class="actions">
       <button class="btn" onclick="openModal()">Click to see our memories</button>
-      <button class="btn secondary" id="musicToggle" aria-pressed="false">▶️ Play Music</button>
+     
+	   <button class="btn"  id="musicToggle" aria-pressed="false" onclick="playSong('koitumsanahi.mp3', this)">🎶 Maza Fav</button>
     </div>
 
  <!-- NEW SONG BUTTONS -->
     <div class="actions">
    <!-- 🎶 Song Button -->
       <button class="btn" onclick="playSong('koitumsanahi.mp3', this)">🎶 Maza Fav</button>
-      <!-- <button class="btn" onclick="playSong('tuzaSong')">🎶 Maza fav</button> -->
-      <!-- <button class="btn" onclick="playSong('mazaSong')">🎶 Apla fav</button> -->
+      
     </div>
 	
 	<button class="gift-btn" onclick="openGift()">🎁 Open Surprise</button>
@@ -658,6 +658,13 @@
       const jitter = (Math.random()*4 - 2); // -2..2 deg
       el.style.setProperty('--rot', (base + jitter) + 'deg');
     });
+	
+	function openGift() {
+  document.getElementById("giftModal").style.display = "block";
+}
+function closeGift() {
+  document.getElementById("giftModal").style.display = "none";
+}
   </script>
 </body>
 </html>
