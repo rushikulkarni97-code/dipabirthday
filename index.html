@@ -356,10 +356,9 @@
 </head>
 <body>
   <!-- AUDIO (autoplay may be blocked until user interacts) -->
- <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
-  <audio id="favSong" src="fav.mp3" preload="auto"></audio>
-  <audio id="tuzaSong" src="tuza.mp3" preload="auto"></audio>
-  <audio id="mazaSong" src="maza.mp3" preload="auto"></audio>
+ <audio id="favSong" src="koitumsanahi.mp3" preload="auto"></audio>
+
+	
   <div class="card" id="mainCard">
     <h1>🎉 प्रिय बायको तुला वाढदिवसाच्या हार्दिक शुभेच्छा ...! 🎂</h1>
     <p class="lead">Wishing you endless joy, laughter, and happiness today ❤️</p>
@@ -377,17 +376,16 @@
     <div class="actions">
       <button class="btn" onclick="openModal()">Click to see our memories</button>
      
-	   <button class="btn"  id="musicToggle" aria-pressed="false" onclick="playSong('koitumsanahi.mp3', this)">🎶 Maza Fav</button>
+<button class="btn" onclick="playSong('favSong', this)">🎶 Maza Fav</button>
+
     </div>
 
- <!-- NEW SONG BUTTONS -->
-    <div class="actions">
-   <!-- 🎶 Song Button -->
-      <button class="btn" onclick="playSong('koitumsanahi.mp3', this)">🎶 Maza Fav</button>
-      
+
+    <div class="actions>
+      	<button class="gift-btn" onclick="openGift()">🎁 Open Surprise</button>
+
     </div>
 	
-	<button class="gift-btn" onclick="openGift()">🎁 Open Surprise</button>
 
 <!-- Surprise Modal -->
 <div id="giftModal" class="modal">
@@ -491,29 +489,39 @@
     /* =========================
        MUSIC CONTROL
        ========================= */
-    const audio = document.getElementById("bgMusic");
-    const musicToggle = document.getElementById("musicToggle");
+    let currentPlaying = null;
 
-    function safePlay(){
-      // Autoplay attempt; will succeed after any user gesture
-      audio.play().then(()=>{
-        musicToggle.textContent = "⏸️ Pause Music";
-        musicToggle.setAttribute("aria-pressed","true");
-      }).catch(()=>{/* ignore */});
+function playSong(audioId, btn) {
+  // Pause background music if it’s running
+  const bg = document.getElementById("bgMusic");
+  if (!bg.paused) bg.pause();
+
+  // Stop any song already playing
+  if (currentPlaying && !currentPlaying.paused) {
+    currentPlaying.pause();
+  }
+
+  // Get the requested song
+  const audio = document.getElementById(audioId);
+  audio.currentTime = 0;
+  audio.play();
+
+  currentPlaying = audio;
+
+  // Change button text while playing
+  btn.textContent = "⏸️ Pause Song";
+
+  // Toggle play/pause
+  btn.onclick = function () {
+    if (audio.paused) {
+      audio.play();
+      btn.textContent = "⏸️ Pause Song";
+    } else {
+      audio.pause();
+      btn.textContent = "▶️ Play Song";
     }
-    musicToggle.addEventListener("click", ()=>{
-      if (audio.paused) {
-        audio.play();
-        musicToggle.textContent = "⏸️ Pause Music";
-        musicToggle.setAttribute("aria-pressed","true");
-      } else {
-        audio.pause();
-        musicToggle.textContent = "▶️ Play Music";
-        musicToggle.setAttribute("aria-pressed","false");
-      }
-    });
-    // try autoplay when user first interacts anywhere
-    window.addEventListener("click", safePlay, { once:true });
+  };
+}
 
     /* =========================
        COUNTUP (months, days, h/m/s)
