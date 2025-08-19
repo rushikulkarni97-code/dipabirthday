@@ -343,7 +343,11 @@
 </head>
 <body>
   <!-- AUDIO (autoplay may be blocked until user interacts) -->
- <audio id="favSong" src="koitumsanahi.mp3" preload="auto"></audio>
+ <audio autoplay loop>
+    <source src="koitumsanahi.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
 
 	
   <div class="card" id="mainCard">
@@ -362,9 +366,7 @@
 
     <div class="actions">
       <button class="btn" onclick="openModal()">Click to see our memories</button>
-     
-      <button class="btn" onclick="toggleSong('favSong', this)">🎶 Click here to play your fav song bayko</button>
-	  
+      
 	  <button class="btn" onclick="openGift()">🎁 Mazya hya bhavna</button>
 
     </div>
@@ -460,46 +462,18 @@
 
    
     const quotes = [
-      "Mazi babdi tu☕",
+      "Mazi babdi tu❤️",
       "Mazi chabdi tu❤️",
-      "Maza baal tu",
-      "Mazi sundari tu🌙",
-      "Maza  jiwan tu😊",
-      "Maza shwas tu 🚆",
-      "Maza dhyas tu 💞",
-      "Maza sarwasva tu☕🎶"
+      "Maza baal tu❤️",
+      "Mazi sundari tu❤️",
+      "Maza jiwan tu❤️",
+      "Maza shwas tu❤️",
+      "Maza dhyas tu💞",
+      "Maza sarwasva tu❤️🎶"
     ];
     const QUOTE_INTERVAL_MS = 30000;
 
-    /* =========================
-       MUSIC CONTROL
-       ========================= */
-   let currentPlaying = null;
-
-function toggleSong(audioId, btn) {
-  const audio = document.getElementById(audioId);
-
-  // if the same audio is playing, toggle pause
-  if (currentPlaying === audio && !audio.paused) {
-    audio.pause();
-    btn.textContent = "▶️ Play Song";
-    return;
-  }
-
-  // stop any currently playing song
-  if (currentPlaying && !currentPlaying.paused) {
-    currentPlaying.pause();
-  }
-
-  // play requested song
-  audio.play().then(() => {
-    btn.textContent = "⏸️ Pause Song";
-    currentPlaying = audio;
-  }).catch(err => {
-    console.log("Playback blocked:", err);
-    alert("Tap the page once to allow audio 🎶");
-  });
-}
+   
     /* =========================
        COUNTUP (months, days, h/m/s)
        ========================= */
