@@ -390,10 +390,7 @@
   </style>
 </head>
 <body>	
-<audio id="birthdaySong">
-    <source src="Rafta.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+
   <div class="card" id="mainCard">
     <h1>🎉 प्रिय बायको तुला वाढदिवसाच्या हार्दिक शुभेच्छा ...! 🎂</h1>
     <p class="lead">Wishing you endless joy, laughter, and happiness today ❤️</p>
@@ -450,23 +447,23 @@
     <div class="polaroids" id="polaroidGrid">
       <!-- Update captions as you like -->
       <div class="polaroid" style="--rot:-6deg">
-        <img src="Pahilibhet.jpg" alt="First Meet">
+        <img src="Pahilibhet.jpg" alt="First Meet" loading="lazy">
         <div class="caption">Our first meet ✨</div>
       </div>
       <div class="polaroid" style="--rot:4deg">
-        <img src="Thane.jpg" alt="Thane">
+        <img src="Thane.jpg" alt="Thane" loading="lazy">
         <div class="caption">Thane Movie Date 🏙️</div>
       </div>
       <div class="polaroid" style="--rot:-3deg">
-        <img src="vashi.jpg" alt="Vashi">
+        <img src="vashi.jpg" alt="Vashi" loading="lazy">
         <div class="caption">Vashi 🌅</div>
       </div>
       <div class="polaroid" style="--rot:7deg">
-        <img src="Honeymoon.jpg" alt="Honeymoon">
+        <img src="Honeymoon.jpg" alt="Honeymoon" loading="lazy">
         <div class="caption">Honeymoon Alibaug 💞</div>
       </div>
       <div class="polaroid" style="--rot:-7deg">
-        <img src="TrainJourney.jpg" alt="Train Journey">
+        <img src="TrainJourney.jpg" alt="Train Journey" loading="lazy">
         <div class="caption">Train Journey 🚆</div>
       </div>
       <div class="polaroid" style="--rot:2deg">
@@ -502,7 +499,7 @@
       <h2>✨ Our Memories ✨</h2>
       <div class="carousel">
         <button class="prev" onclick="changeSlide(-1)">❮</button>
-        <!-- carousel images: only the first is visible initially -->
+       
         <img class="slides" src="Pahilibhet.jpg" alt="Memory 1">
         <img class="slides" src="Thane.jpg" alt="Memory 2" style="display:none">
         <img class="slides" src="vashi.jpg" alt="Memory 3" style="display:none">
@@ -688,6 +685,7 @@ function closeGift() {
 function openFirstMessage(){ document.getElementById("firstMessageModal").style.display="flex"; }
 function closeFirstMessage(){ document.getElementById("firstMessageModal").style.display="none"; }
 
+});
   </script>
 </body>
 </html>
