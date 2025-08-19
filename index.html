@@ -408,15 +408,6 @@
       <div class="quote" id="quoteText">Mazi dipudi tu ☕</div>
     </div>
  <!-- Music Player -->
-    <div class="music-player">
-      <h3>🎵 Our Special Song</h3>
-      <div class="music-controls">
-        <button class="music-btn" id="playBtn">▶️</button>
-        <button class="music-btn" id="pauseBtn">⏸️</button>
-        <button class="music-btn" id="restartBtn">⏮️</button>
-      </div>
-      <div class="music-info" id="musicStatus">Click play to start the music</div>
-    </div>
     <div class="actions">
       <button class="btn" onclick="openModal()">Memories</button>
       
@@ -468,11 +459,11 @@
       </div>
       <div class="polaroid" style="--rot:-3deg">
         <img src="vashi.jpg" alt="Vashi">
-        <div class="caption">Vashi sunset 🌅</div>
+        <div class="caption">Vashi 🌅</div>
       </div>
       <div class="polaroid" style="--rot:7deg">
         <img src="Honeymoon.jpg" alt="Honeymoon">
-        <div class="caption">Honeymoon vibes 💞</div>
+        <div class="caption">Honeymoon Alibaug 💞</div>
       </div>
       <div class="polaroid" style="--rot:-7deg">
         <img src="TrainJourney.jpg" alt="Train Journey">
@@ -480,7 +471,11 @@
       </div>
       <div class="polaroid" style="--rot:2deg">
         <img src="krishnakath.jpg" alt="Krishna Katha">
-        <div class="caption">Krishna Kath 🙏</div>
+        <div class="caption">Karhad 🙏</div>
+      </div>
+	   <div class="polaroid" style="--rot:-2deg">
+        <img src="favone.jpg" alt="Favourite">
+        <div class="caption">Lonavala 📸</div>
       </div>
       <div class="polaroid" style="--rot:-10deg">
         <img src="amrutwedding.jpg" alt="Amrut Wedding">
@@ -492,7 +487,7 @@
       </div>
       <div class="polaroid" style="--rot:-2deg">
         <img src="favone.jpg" alt="Favourite">
-        <div class="caption">My favourite photo 📸</div>
+        <div class="caption">Our Fav 📸</div>
       </div>
     </div>
   </div>
@@ -638,20 +633,6 @@
 
   // start carousel auto-play
   autoPlayTimer = setInterval(() => changeSlide(1), 3500);
-
-  // play the song safely after user click
-  if (birthdaySong.paused) {
-    birthdaySong.play()
-      .then(() => {
-        musicStatus.textContent = "Playing our special song...";
-      })
-      .catch(error => {
-        musicStatus.textContent = "Click ▶️ to play the song";
-        console.warn("Playback prevented:", error);
-      });
-  } else {
-    musicStatus.textContent = "Song is already playing 🎵";
-  }
 }
 
     function closeModal(){
@@ -706,26 +687,7 @@ function closeGift() {
 
 function openFirstMessage(){ document.getElementById("firstMessageModal").style.display="flex"; }
 function closeFirstMessage(){ document.getElementById("firstMessageModal").style.display="none"; }
-const birthdaySong = document.getElementById("birthdaySong");
-const playBtn = document.getElementById("playBtn");
-const pauseBtn = document.getElementById("pauseBtn");
-const restartBtn = document.getElementById("restartBtn");
-const musicStatus = document.getElementById("musicStatus");
 
-playBtn.addEventListener("click", () => {
-  birthdaySong.play()
-    .then(() => musicStatus.textContent = "Playing our special song...")
-    .catch(err => console.error("Cannot play:", err));
-});
-pauseBtn.addEventListener("click", () => {
-  birthdaySong.pause();
-  musicStatus.textContent = "Music paused";
-});
-restartBtn.addEventListener("click", () => {
-  birthdaySong.currentTime = 0;
-  birthdaySong.play();
-  musicStatus.textContent = "Restarted song";
-});
   </script>
 </body>
 </html>
