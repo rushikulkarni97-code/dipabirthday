@@ -648,6 +648,14 @@ function toggleSong(audioId, btn) {
 function closeGift() {
   document.getElementById("giftModal").style.display = "none";
 }
+document.addEventListener("click", () => {
+  const audio = document.getElementById("favSong");
+  audio.play().then(() => {
+    audio.pause();  // immediately pause, just unlocks permission
+  }).catch(()=>{});
+  
+  document.removeEventListener("click", arguments.callee);
+});
   </script>
 </body>
 </html>
