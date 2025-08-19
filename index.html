@@ -271,22 +271,7 @@
       border: 1px solid rgba(0,0,0,0.08);
       animation: none;
     }
-	.gift-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #ff6699;
-  border: none;
-  color: white;
-  font-size: 22px;
-  padding: 12px 18px;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-}
-.gift-btn:hover { transform: scale(1.1); }
-
+	
 /* 🎁 Surprise Modal */
 .modal {
   display: none; 
@@ -376,9 +361,9 @@
     <div class="actions">
       <button class="btn" onclick="openModal()">Click to see our memories</button>
      
-      <button class="btn" onclick="playSong('favSong', this)">🎶 Click here to play your fav song bayko</button>
+      <button class="btn" onclick="toggleSong('favSong', this)">🎶 Click here to play your fav song bayko</button>
 	  
-	  	<button class="gift-btn" onclick="openGift()">🎁 Mazya hya bhavna</button>
+	  <button class="btn" onclick="openGift()">🎁 Mazya hya bhavna</button>
 
     </div>
 
@@ -487,40 +472,32 @@
     /* =========================
        MUSIC CONTROL
        ========================= */
-    let currentPlaying = null;
+   let currentPlaying = null;
 
-function playSong(audioId, btn) {
-  // Pause background music if it’s running
-  const bg = document.getElementById("bgMusic");
-  if (!bg.paused) bg.pause();
+function toggleSong(audioId, btn) {
+  const audio = document.getElementById(audioId);
 
-  // Stop any song already playing
+  // if the same audio is playing, toggle pause
+  if (currentPlaying === audio && !audio.paused) {
+    audio.pause();
+    btn.textContent = "▶️ Play Song";
+    return;
+  }
+
+  // stop any currently playing song
   if (currentPlaying && !currentPlaying.paused) {
     currentPlaying.pause();
   }
 
-  // Get the requested song
-  const audio = document.getElementById(audioId);
-  audio.currentTime = 0;
-  audio.play();
-
-  currentPlaying = audio;
-
-  // Change button text while playing
-  btn.textContent = "⏸️ Pause Song";
-
-  // Toggle play/pause
-  btn.onclick = function () {
-    if (audio.paused) {
-      audio.play();
-      btn.textContent = "⏸️ Pause Song";
-    } else {
-      audio.pause();
-      btn.textContent = "▶️ Play Song";
-    }
-  };
+  // play requested song
+  audio.play().then(() => {
+    btn.textContent = "⏸️ Pause Song";
+    currentPlaying = audio;
+  }).catch(err => {
+    console.log("Playback blocked:", err);
+    alert("Tap the page once to allow audio 🎶");
+  });
 }
-
     /* =========================
        COUNTUP (months, days, h/m/s)
        ========================= */
