@@ -271,6 +271,47 @@
       border: 1px solid rgba(0,0,0,0.08);
       animation: none;
     }
+	.gift-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff6699;
+  border: none;
+  color: white;
+  font-size: 22px;
+  padding: 12px 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+.gift-btn:hover { transform: scale(1.1); }
+
+/* 🎁 Surprise Modal */
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+}
+.modal-content {
+  background: white;
+  margin: 10% auto;
+  padding: 25px;
+  border-radius: 12px;
+  width: 70%;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal-content h2 { color: #ff3366; }
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
 
     /* ANIMATIONS + FX */
     @keyframes fadeIn {
@@ -344,6 +385,23 @@
       <button class="btn" onclick="playSong('tuzaSong')">🎶 Maza fav</button>
       <button class="btn" onclick="playSong('mazaSong')">🎶 Apla fav</button>
     </div>
+	
+	<button class="gift-btn" onclick="openGift()">🎁 Open Surprise</button>
+
+<!-- Surprise Modal -->
+<div id="giftModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeGift()">&times;</span>
+    <h2>💌 My Special Wish for You</h2>
+    <p>
+      Happy Birthday my love! ❤️  
+      From the day we met till today, you’ve filled my life with happiness, care, and countless memories.  
+      You are my safe place, my joy, and my forever.  
+      On this birthday, I just want to remind you that no matter what, I’ll always be by your side.  
+      Here’s to many more memories, smiles, and endless love together. 💕
+    </p>
+  </div>
+</div>
 	
     <!-- POLAROID GALLERY -->
     <div class="polaroids" id="polaroidGrid">
