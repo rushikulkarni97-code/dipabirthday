@@ -700,7 +700,26 @@ function closeGift() {
 
 function openFirstMessage(){ document.getElementById("firstMessageModal").style.display="flex"; }
 function closeFirstMessage(){ document.getElementById("firstMessageModal").style.display="none"; }
+const birthdaySong = document.getElementById("birthdaySong");
+const playBtn = document.getElementById("playBtn");
+const pauseBtn = document.getElementById("pauseBtn");
+const restartBtn = document.getElementById("restartBtn");
+const musicStatus = document.getElementById("musicStatus");
 
+playBtn.addEventListener("click", () => {
+  birthdaySong.play()
+    .then(() => musicStatus.textContent = "Playing our special song...")
+    .catch(err => console.error("Cannot play:", err));
+});
+pauseBtn.addEventListener("click", () => {
+  birthdaySong.pause();
+  musicStatus.textContent = "Music paused";
+});
+restartBtn.addEventListener("click", () => {
+  birthdaySong.currentTime = 0;
+  birthdaySong.play();
+  musicStatus.textContent = "Restarted song";
+});
   </script>
 </body>
 </html>
