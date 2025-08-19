@@ -353,7 +353,7 @@
 </head>
 <body>
   <!-- AUDIO (autoplay may be blocked until user interacts) -->
-<button id="playMusicBtn">▶️ Play Music</button>
+
 <audio id="bgMusic" loop>
   <source src="https://rushikulkarni97-code.github.io/dipabirthday/koitumsanahi.mp3" type="audio/mpeg">
 </audio>
@@ -376,20 +376,23 @@
       <button class="btn" onclick="openModal()">Click to see our memories</button>
       
 	  <button class="btn" onclick="openGift()">🎁 Mazya hya bhavna</button>
-	  <button class="btn" onclick="openFirstMessage()">📱 Our First Message</button>
+	  <button class="btn" onclick="openFirstMessage()">📱 From where it all started..!</button>
+	  <button id="playMusicBtn">▶️ Play Music</button>
 
 
 </div>
 <div id="firstMessageModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeFirstMessage()">&times;</span>
-    <div class="chat-bubble">
-      <p>Hey! This is where it all started ❤️</p>
-    </div>
+    <!-- First chat screenshot -->
+    <img 
+      src="firsttext.jpg" 
+      alt="Our First Text Screenshot" 
+      style="width:100%; max-width:500px; border-radius:12px; box-shadow:0 12px 28px rgba(0,0,0,0.35);"
+    >
   </div>
+</div>
 
-
-    </div>
 
       
 	
