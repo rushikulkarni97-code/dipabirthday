@@ -631,23 +631,29 @@
 
     function changeSlide(n){ showSlide(slideIndex + n); }
 	
-  function openModal(){
-      modal.style.display = "flex";
-      modal.setAttribute("aria-hidden","false");
-      showSlide(slideIndex);
-      // start auto-play
-      autoPlayTimer = setInterval(()=>changeSlide(1), 3500);
-      
-      // Play the song when modal opens
-      birthdaySong.play()
-        .then(() => {
-          musicStatus.textContent = "Playing our special song...";
-        })
-        .catch(error => {
-          musicStatus.textContent = "Please click the play button to start music";
-          console.error("Autoplay prevented:", error);
-        });
-    }
+  function openModal() {
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+  showSlide(slideIndex);
+
+  // start carousel auto-play
+  autoPlayTimer = setInterval(() => changeSlide(1), 3500);
+
+  // play the song safely after user click
+  if (birthdaySong.paused) {
+    birthdaySong.play()
+      .then(() => {
+        musicStatus.textContent = "Playing our special song...";
+      })
+      .catch(error => {
+        musicStatus.textContent = "Click ▶️ to play the song";
+        console.warn("Playback prevented:", error);
+      });
+  } else {
+    musicStatus.textContent = "Song is already playing 🎵";
+  }
+}
+
     function closeModal(){
       modal.style.display = "none";
       modal.setAttribute("aria-hidden","true");
