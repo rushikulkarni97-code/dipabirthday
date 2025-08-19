@@ -351,13 +351,11 @@
     }
   </style>
 </head>
-<body>
-  <!-- AUDIO (autoplay may be blocked until user interacts) -->
-
-<audio controls loop>
-  <source src="koitumsanahi.mp3" type="audio/mpeg">
-</audio>
-	
+<body>	
+ <audio id="backgroundMusic" loop>
+    <source src="koitumsanahi.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
   <div class="card" id="mainCard">
     <h1>🎉 प्रिय बायको तुला वाढदिवसाच्या हार्दिक शुभेच्छा ...! 🎂</h1>
     <p class="lead">Wishing you endless joy, laughter, and happiness today ❤️</p>
@@ -373,7 +371,7 @@
     </div>
 
     <div class="actions">
-      <button class="btn" onclick="openModal()">Click to see our memories</button>
+      <button class="btn" onclick="openModal()">Memories</button>
       
 	  <button class="btn" onclick="openGift()">🎁 Mazya hya bhavna</button>
 	  <button class="btn" onclick="openFirstMessage()">📱 From where it all started..!</button>
@@ -583,28 +581,28 @@
       slides[slideIndex].style.display = "block";
     }
     function changeSlide(n){ showSlide(slideIndex + n); }
-    function openModal(){
+     function openModal(){
       modal.style.display = "flex";
       modal.setAttribute("aria-hidden","false");
       showSlide(slideIndex);
       // start auto-play
       autoPlayTimer = setInterval(()=>changeSlide(1), 3500);
-     
       
+      // Play the song when modal opens
+      backgroundMusic.play().catch(error => {
+        console.log("Autoplay prevented: ", error);
+        // Add a fallback play button if needed
+      });
     }
+    
     function closeModal(){
       modal.style.display = "none";
       modal.setAttribute("aria-hidden","true");
       if (autoPlayTimer) clearInterval(autoPlayTimer);
+      
+      // Pause the song when modal closes
+      backgroundMusic.pause();
     }
-    window.openModal = openModal;
-    window.closeModal = closeModal;
-    window.changeSlide = changeSlide;
-
-    // Close on backdrop click
-    modal.addEventListener("click",(e)=>{
-      if(e.target === modal) closeModal();
-    });
 
     /* =========================
        SPARKLES AROUND CARD
@@ -645,11 +643,7 @@
 function closeGift() {
   document.getElementById("giftModal").style.display = "none";
 }
-window.addEventListener("DOMContentLoaded", () => {
-  const audio = document.getElementById("bgMusic");
-  // enable controls explicitly
-  audio.controls = true;
-});
+
 function openFirstMessage(){ document.getElementById("firstMessageModal").style.display="flex"; }
 function closeFirstMessage(){ document.getElementById("firstMessageModal").style.display="none"; }
 
