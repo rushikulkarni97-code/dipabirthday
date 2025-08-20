@@ -390,7 +390,10 @@
   </style>
 </head>
 <body>	
-
+<audio id="birthdaySong">
+    <source src="Rafta.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
   <div class="card" id="mainCard">
     <h1>🎉 प्रिय बायको तुला वाढदिवसाच्या हार्दिक शुभेच्छा ...! 🎂</h1>
     <p class="lead">Wishing you endless joy, laughter, and happiness today ❤️</p>
@@ -405,6 +408,15 @@
       <div class="quote" id="quoteText">Mazi dipudi tu ☕</div>
     </div>
  <!-- Music Player -->
+    <div class="music-player">
+      <h3>🎵 Our Special Song</h3>
+      <div class="music-controls">
+        <button class="music-btn" id="playBtn">▶️</button>
+        <button class="music-btn" id="pauseBtn">⏸️</button>
+        <button class="music-btn" id="restartBtn">⏮️</button>
+      </div>
+      <div class="music-info" id="musicStatus">Click play to start the music</div>
+    </div>
     <div class="actions">
       <button class="btn" onclick="openModal()">Memories</button>
       
@@ -447,32 +459,28 @@
     <div class="polaroids" id="polaroidGrid">
       <!-- Update captions as you like -->
       <div class="polaroid" style="--rot:-6deg">
-        <img src="Pahilibhet.jpg" alt="First Meet" loading="lazy">
+        <img src="Pahilibhet.jpg" alt="First Meet">
         <div class="caption">Our first meet ✨</div>
       </div>
       <div class="polaroid" style="--rot:4deg">
-        <img src="Thane.jpg" alt="Thane" loading="lazy">
+        <img src="Thane.jpg" alt="Thane">
         <div class="caption">Thane Movie Date 🏙️</div>
       </div>
       <div class="polaroid" style="--rot:-3deg">
-        <img src="vashi.jpg" alt="Vashi" loading="lazy">
-        <div class="caption">Vashi 🌅</div>
+        <img src="vashi.jpg" alt="Vashi">
+        <div class="caption">Vashi sunset 🌅</div>
       </div>
       <div class="polaroid" style="--rot:7deg">
-        <img src="Honeymoon.jpg" alt="Honeymoon" loading="lazy">
-        <div class="caption">Honeymoon Alibaug 💞</div>
+        <img src="Honeymoon.jpg" alt="Honeymoon">
+        <div class="caption">Honeymoon vibes 💞</div>
       </div>
       <div class="polaroid" style="--rot:-7deg">
-        <img src="TrainJourney.jpg" alt="Train Journey" loading="lazy">
+        <img src="TrainJourney.jpg" alt="Train Journey">
         <div class="caption">Train Journey 🚆</div>
       </div>
       <div class="polaroid" style="--rot:2deg">
         <img src="krishnakath.jpg" alt="Krishna Katha">
-        <div class="caption">Karhad 🙏</div>
-      </div>
-	   <div class="polaroid" style="--rot:-2deg">
-        <img src="favone.jpg" alt="Favourite">
-        <div class="caption">Lonavala 📸</div>
+        <div class="caption">Krishna Kath 🙏</div>
       </div>
       <div class="polaroid" style="--rot:-10deg">
         <img src="amrutwedding.jpg" alt="Amrut Wedding">
@@ -484,7 +492,7 @@
       </div>
       <div class="polaroid" style="--rot:-2deg">
         <img src="favone.jpg" alt="Favourite">
-        <div class="caption">Our Fav 📸</div>
+        <div class="caption">My favourite photo 📸</div>
       </div>
     </div>
   </div>
@@ -499,7 +507,7 @@
       <h2>✨ Our Memories ✨</h2>
       <div class="carousel">
         <button class="prev" onclick="changeSlide(-1)">❮</button>
-       
+        <!-- carousel images: only the first is visible initially -->
         <img class="slides" src="Pahilibhet.jpg" alt="Memory 1">
         <img class="slides" src="Thane.jpg" alt="Memory 2" style="display:none">
         <img class="slides" src="vashi.jpg" alt="Memory 3" style="display:none">
@@ -621,25 +629,50 @@
     }
   
 
-    function changeSlide(n){ showSlide(slideIndex + n); }
-	
-  function openModal() {
+ function showSlide(i){
+  const slides = document.getElementsByClassName("slides");
+  for (let s=0; s<slides.length; s++) slides[s].style.display = "none";
+  slideIndex = (i + slides.length) % slides.length;
+  slides[slideIndex].style.display = "block";
+}
+
+function changeSlide(n){ 
+  showSlide(slideIndex + n); 
+}
+
+function openModal() {
   modal.style.display = "flex";
   modal.setAttribute("aria-hidden", "false");
   showSlide(slideIndex);
 
   // start carousel auto-play
   autoPlayTimer = setInterval(() => changeSlide(1), 3500);
+
+  if (birthdaySong.paused) {
+    birthdaySong.play()
+      .then(() => {
+        musicStatus.textContent = "Playing our special song...";
+      })
+      .catch(error => {
+        musicStatus.textContent = "Click ▶️ to play the song";
+        console.warn("Playback prevented:", error);
+      });
+  } else {
+    musicStatus.textContent = "Song is already playing 🎵";
+  }
 }
 
-    function closeModal(){
-      modal.style.display = "none";
-      modal.setAttribute("aria-hidden","true");
-      if (autoPlayTimer) clearInterval(autoPlayTimer);
-    }
-    window.openModal = openModal;
-    window.closeModal = closeModal;
-    window.changeSlide = changeSlide;
+// ✅ Now outside any function
+function closeModal(){
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden","true");
+  if (autoPlayTimer) clearInterval(autoPlayTimer);
+}
+
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.changeSlide = changeSlide;
+
 
 
     /* =========================
@@ -685,7 +718,6 @@ function closeGift() {
 function openFirstMessage(){ document.getElementById("firstMessageModal").style.display="flex"; }
 function closeFirstMessage(){ document.getElementById("firstMessageModal").style.display="none"; }
 
-});
   </script>
 </body>
 </html>
