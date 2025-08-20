@@ -247,44 +247,7 @@
       box-shadow: 0 3px 8px rgba(0,0,0,0.15);
       border-radius: 4px;
     }
-	  /* Music Player */
-    .music-player {
-      margin-top: 20px;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    .music-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
-    .music-btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, var(--btn-grad1), var(--btn-grad2));
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-    }
-    .music-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-    }
-    .music-info {
-      margin-top: 10px;
-      font-size: 1rem;
-      color: #555;
-    }
+	
 	 /* BUTTONS */
     .actions{
       display:flex; 
@@ -390,10 +353,6 @@
   </style>
 </head>
 <body>	
-<audio id="birthdaySong">
-    <source src="Rafta.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
   <div class="card" id="mainCard">
     <h1>🎉 प्रिय बायको तुला वाढदिवसाच्या हार्दिक शुभेच्छा ...! 🎂</h1>
     <p class="lead">Wishing you endless joy, laughter, and happiness today ❤️</p>
@@ -408,15 +367,7 @@
       <div class="quote" id="quoteText">Mazi dipudi tu ☕</div>
     </div>
  <!-- Music Player -->
-    <div class="music-player">
-      <h3>🎵 Our Special Song</h3>
-      <div class="music-controls">
-        <button class="music-btn" id="playBtn">▶️</button>
-        <button class="music-btn" id="pauseBtn">⏸️</button>
-        <button class="music-btn" id="restartBtn">⏮️</button>
-      </div>
-      <div class="music-info" id="musicStatus">Click play to start the music</div>
-    </div>
+    
     <div class="actions">
       <button class="btn" onclick="openModal()">Memories</button>
       
