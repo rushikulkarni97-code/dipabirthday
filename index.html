@@ -310,6 +310,52 @@
   font-size: 24px;
   cursor: pointer;
 }
+.slides {
+  position: relative;
+  text-align: center;
+}
+
+.slides img {
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  display: block;
+  margin: 0 auto;
+  max-width: 90%;
+}
+
+/* Yellow tape effect */
+.slides img::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(3deg);
+  width: 70px;
+  height: 18px;
+  background: rgba(255,255,153,0.9); /* light yellow */
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+.carousel p {
+  margin-top: 10px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #444;
+  text-align: center;
+  font-family: "Georgia", serif; /* elegant serif font */
+  background: rgba(255, 255, 255, 0.85);
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.carousel p:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  color: var(--accent); /* matches your theme accent (#e91e63) */
+}
 
     /* ANIMATIONS + FX */
     @keyframes fadeIn {
@@ -407,46 +453,50 @@
 </div>
 	
     <!-- POLAROID GALLERY -->
-    <div class="polaroids" id="polaroidGrid">
-      <!-- Update captions as you like -->
-      <div class="polaroid" style="--rot:-6deg">
-        <img src="Pahilibhet.jpg" alt="First Meet">
-        <div class="caption">Our first meet ✨</div>
-      </div>
-      <div class="polaroid" style="--rot:4deg">
-        <img src="Thane.jpg" alt="Thane">
-        <div class="caption">Thane Movie Date 🏙️</div>
-      </div>
-      <div class="polaroid" style="--rot:-3deg">
-        <img src="vashi.jpg" alt="Vashi">
-        <div class="caption">Vashi sunset 🌅</div>
-      </div>
-      <div class="polaroid" style="--rot:7deg">
-        <img src="Honeymoon.jpg" alt="Honeymoon">
-        <div class="caption">Honeymoon vibes 💞</div>
-      </div>
-      <div class="polaroid" style="--rot:-7deg">
-        <img src="TrainJourney.jpg" alt="Train Journey">
-        <div class="caption">Train Journey 🚆</div>
-      </div>
-      <div class="polaroid" style="--rot:2deg">
-        <img src="krishnakath.jpg" alt="Krishna Katha">
-        <div class="caption">Krishna Kath 🙏</div>
-      </div>
-      <div class="polaroid" style="--rot:-10deg">
-        <img src="amrutwedding.jpg" alt="Amrut Wedding">
-        <div class="caption">Amrut’s wedding 💃</div>
-      </div>
-      <div class="polaroid" style="--rot:5deg">
-        <img src="manglagaur.jpg" alt="Manglagaur">
-        <div class="caption">Manglagaur 🌼</div>
-      </div>
-      <div class="polaroid" style="--rot:-2deg">
-        <img src="favone.jpg" alt="Favourite">
-        <div class="caption">My favourite photo 📸</div>
-      </div>
-    </div>
+  <!-- POLAROID GALLERY -->
+<div class="polaroids" id="polaroidGrid">
+  <div class="polaroid" style="--rot:-6deg">
+    <img src="Dipa1.jpg" alt="Dipa 1">
+    <div class="caption">❤️</div>
   </div>
+  <div class="polaroid" style="--rot:4deg">
+    <img src="dipa2.jpg" alt="Dipa 2">
+    <div class="caption">❤️</div>
+  </div>
+  <div class="polaroid" style="--rot:-3deg">
+    <img src="Dipa3.jpg" alt="Dipa 3">
+    <div class="caption">❤️</div>
+  </div>
+  <div class="polaroid" style="--rot:7deg">
+    <img src="Dipa4.jpg" alt="Dipa 4">
+    <div class="caption">❤️</div>
+  </div>
+  <div class="polaroid" style="--rot:-7deg">
+    <img src="Dipa5.jpg" alt="Dipa 5">
+    <div class="caption">❤️</div>
+  </div>
+  <div class="polaroid" style="--rot:2deg">
+    <img src="Dipa6.jpg" alt="Dipa 6">
+    <div class="caption">❤️</div>
+  </div>
+  <div class="polaroid" style="--rot:-10deg">
+    <img src="Dipa7.jpg" alt="Dipa 7">
+    <div class="caption">❤️</div>
+  </div>
+  <div class="polaroid" style="--rot:5deg">
+    <img src="Dipa8.jpg" alt="Dipa 8">
+    <div class="caption">❤️</div>
+  </div>
+  <div class="polaroid" style="--rot:-2deg">
+    <img src="Dipa9.jpg" alt="Dipa 9">
+    <div class="caption">❤️</div>
+  </div>
+  <div class="polaroid" style="--rot:3deg">
+    <img src="Dipa10.webp" alt="Dipa 10">
+    <div class="caption">❤️</div>
+  </div>
+</div>
+
 
   <!-- SPARKLES (auto-generated around card) -->
   <div id="sparkleLayer"></div>
@@ -457,19 +507,65 @@
       <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
       <h2>✨ Our Memories ✨</h2>
       <div class="carousel">
-        <button class="prev" onclick="changeSlide(-1)">❮</button>
-        <!-- carousel images: only the first is visible initially -->
-        <img class="slides" src="Pahilibhet.jpg" alt="Memory 1">
-        <img class="slides" src="Thane.jpg" alt="Memory 2" style="display:none">
-        <img class="slides" src="vashi.jpg" alt="Memory 3" style="display:none">
-        <img class="slides" src="Honeymoon.jpg" alt="Memory 4" style="display:none">
-        <img class="slides" src="TrainJourney.jpg" alt="Memory 5" style="display:none">
-        <img class="slides" src="krishnakath.jpg" alt="Memory 6" style="display:none">
-        <img class="slides" src="amrutwedding.jpg" alt="Memory 7" style="display:none">
-        <img class="slides" src="manglagaur.jpg" alt="Memory 8" style="display:none">
-        <img class="slides" src="favone.jpg" alt="Memory 9" style="display:none">
-        <button class="next" onclick="changeSlide(1)">❯</button>
-      </div>
+  <button class="prev" onclick="changeSlide(-1)">❮</button>
+
+  <!-- Slide 1 -->
+  <div class="slides">
+    <img src="Pahilibhet.jpg" alt="Memory 1">
+    <p>📍 Pune – 15 Jan 2024</p>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slides" style="display:none">
+    <img src="Thane.jpg" alt="Memory 2">
+    <p>📍 Thane Movie Date – 10 Feb 2024</p>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slides" style="display:none">
+    <img src="vashi.jpg" alt="Memory 3">
+    <p>📍 Vashi Sunset – 25 Mar 2024</p>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="slides" style="display:none">
+    <img src="Honeymoon.jpg" alt="Memory 4">
+    <p>📍 Goa Honeymoon – 12 Apr 2024</p>
+  </div>
+
+  <!-- Slide 5 -->
+  <div class="slides" style="display:none">
+    <img src="TrainJourney.jpg" alt="Memory 5">
+    <p>📍 Train Journey – 1 May 2024</p>
+  </div>
+
+  <!-- Slide 6 -->
+  <div class="slides" style="display:none">
+    <img src="krishnakath.jpg" alt="Memory 6">
+    <p>📍 Krishna Kath – 18 Jun 2024</p>
+  </div>
+
+  <!-- Slide 7 -->
+  <div class="slides" style="display:none">
+    <img src="amrutwedding.jpg" alt="Memory 7">
+    <p>📍 Amrut’s Wedding – 5 Jul 2024</p>
+  </div>
+
+  <!-- Slide 8 -->
+  <div class="slides" style="display:none">
+    <img src="manglagaur.jpg" alt="Memory 8">
+    <p>📍 Manglagaur – 20 Aug 2024</p>
+  </div>
+
+  <!-- Slide 9 -->
+  <div class="slides" style="display:none">
+    <img src="favone.jpg" alt="Memory 9">
+    <p>📍 Our Favourite – 15 Sep 2024</p>
+  </div>
+
+  <button class="next" onclick="changeSlide(1)">❯</button>
+</div>
+
     </div>
   </div>
 
