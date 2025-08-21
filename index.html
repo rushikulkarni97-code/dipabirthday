@@ -769,19 +769,10 @@
     }
   
 
- function showSlide(i){
-  const slides = document.getElementsByClassName("slides");
-  for (let s=0; s<slides.length; s++) slides[s].style.display = "none";
-  slideIndex = (i + slides.length) % slides.length;
-  slides[slideIndex].style.display = "block";
-}
 
 function changeSlide(n){ 
   showSlide(slideIndex + n); 
 }
-
-const bgMusic = document.getElementById("bgMusic");
-const memoriesMusic = document.getElementById("memoriesMusic");
 
 function openModal() {
   modal.style.display = "flex";
@@ -790,28 +781,14 @@ function openModal() {
 
   // start carousel auto-play
   autoPlayTimer = setInterval(() => changeSlide(1), 3500);
-
-  // 🎵 Pause background song
-  bgMusic.pause();
-
-  // 🎵 Play the memories song
-  memoriesMusic.currentTime = 0;
-  memoriesMusic.play().catch(err => console.log("Music blocked:", err));
 }
 
+// ✅ Now outside any function
 function closeModal(){
   modal.style.display = "none";
   modal.setAttribute("aria-hidden","true");
   if (autoPlayTimer) clearInterval(autoPlayTimer);
-
-  // ⏸ Stop the memories song
-  memoriesMusic.pause();
-  memoriesMusic.currentTime = 0;
-
-  // ▶ Resume background music
-  bgMusic.play().catch(err => console.log("Music blocked:", err));
 }
-
 
 window.openModal = openModal;
 window.closeModal = closeModal;
