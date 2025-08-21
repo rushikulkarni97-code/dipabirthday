@@ -460,6 +460,9 @@
   <audio id="bgMusic" autoplay loop muted>
   <source src="Rafta.mp3" type="audio/mpeg">
 </audio>
+<audio id="memoriesMusic">
+  <source src="koitumsanahi.mp3" type="audio/mpeg">
+</audio>
 
     <h1>🎉 प्रिय बायको तुला वाढदिवसाच्या हार्दिक शुभेच्छा ...! 🎂</h1>
     <p class="lead">Wishing you endless joy, laughter, and happiness today ❤️</p>
@@ -480,7 +483,7 @@
       
 	  <button class="btn" onclick="openGift()">🎁 Mazya hya bhavna</button>
 	 
-<button class="btn" onclick="openPuzzle()">🧩 Click here to see our first message but  with a twist</button>
+<button class="btn" onclick="openPuzzle()">🧩 Click to see our first message but  with a twist</button>
 	  
 </div>
 <div id="firstMessageModal" class="modal">
@@ -777,6 +780,9 @@ function changeSlide(n){
   showSlide(slideIndex + n); 
 }
 
+const bgMusic = document.getElementById("bgMusic");
+const memoriesMusic = document.getElementById("memoriesMusic");
+
 function openModal() {
   modal.style.display = "flex";
   modal.setAttribute("aria-hidden", "false");
@@ -784,14 +790,28 @@ function openModal() {
 
   // start carousel auto-play
   autoPlayTimer = setInterval(() => changeSlide(1), 3500);
+
+  // 🎵 Pause background song
+  bgMusic.pause();
+
+  // 🎵 Play the memories song
+  memoriesMusic.currentTime = 0;
+  memoriesMusic.play().catch(err => console.log("Music blocked:", err));
 }
 
-// ✅ Now outside any function
 function closeModal(){
   modal.style.display = "none";
   modal.setAttribute("aria-hidden","true");
   if (autoPlayTimer) clearInterval(autoPlayTimer);
+
+  // ⏸ Stop the memories song
+  memoriesMusic.pause();
+  memoriesMusic.currentTime = 0;
+
+  // ▶ Resume background music
+  bgMusic.play().catch(err => console.log("Music blocked:", err));
 }
+
 
 window.openModal = openModal;
 window.closeModal = closeModal;
@@ -946,4 +966,3 @@ document.addEventListener("click", () => {
   </script>
 </body>
 </html>
-
