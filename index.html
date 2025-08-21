@@ -511,8 +511,9 @@
 	
     <!-- POLAROID GALLERY -->
   <!-- POLAROID GALLERY -->
+ <h2 class="gallery-heading">✨ A Divine Collection of You ✨</h2>
 <div class="polaroids" id="polaroidGrid">
-<h2 class="gallery-heading">✨ A Divine Collection of You ✨</h2>
+
   <div class="polaroid" style="--rot:-6deg">
     <img src="Dipa1.jpg" alt="Dipa 1">
     <div class="caption">❤️</div>
@@ -888,10 +889,15 @@ function enableDragAndDrop(){
     piece.addEventListener("drop", e=>{
       e.preventDefault();
       if(dragged && dragged !== piece){
-        // swap pieces
+        // swap background
         const temp = piece.style.backgroundPosition;
         piece.style.backgroundPosition = dragged.style.backgroundPosition;
         dragged.style.backgroundPosition = temp;
+
+        // swap dataset.current too
+        const tempData = piece.dataset.current;
+        piece.dataset.current = dragged.dataset.current;
+        dragged.dataset.current = tempData;
 
         // check solved
         checkPuzzle();
@@ -903,17 +909,22 @@ function enableDragAndDrop(){
 function checkPuzzle(){
   const pieces = document.querySelectorAll(".puzzle-piece");
   let solved = true;
+
   pieces.forEach((piece, index)=>{
-    let x = index % 3;
-    let y = Math.floor(index / 3);
-    let correctPos = `-${x*100}px -${y*100}px`;
-    if(piece.style.backgroundPosition !== correctPos){
+    if (piece.dataset.current !== piece.dataset.correct) {
       solved = false;
     }
   });
 
   if(solved){
-    document.getElementById("puzzleMessage").style.display = "block";
+    const msg = document.getElementById("puzzleMessage");
+    msg.style.display = "block";
+    msg.style.opacity = 0;
+    // fade-in effect
+    setTimeout(()=>{
+      msg.style.transition = "opacity 1s";
+      msg.style.opacity = 1;
+    }, 50);
   }
 }
 
