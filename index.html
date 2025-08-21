@@ -356,6 +356,62 @@
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
   color: var(--accent); /* matches your theme accent (#e91e63) */
 }
+.gallery-heading {
+  text-align: center;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-family: "Georgia", serif;
+  font-weight: bold;
+  background: linear-gradient(45deg, #e91e63, #ff9966);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 30px auto 20px;
+  position: relative;
+  display: inline-block;
+  animation: fadeIn 1.5s ease;
+}
+
+.gallery-heading::after {
+  content: "";
+  display: block;
+  width: 80%;
+  height: 3px;
+  margin: 6px auto 0;
+  background: linear-gradient(90deg, transparent, #e91e63, transparent);
+  border-radius: 3px;
+  animation: slideIn 1.2s ease;
+}
+
+@keyframes slideIn {
+  from { width: 0; opacity: 0; }
+  to { width: 80%; opacity: 1; }
+}
+.puzzle {
+  width: 300px;
+  height: 300px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2px;
+  border: 3px solid #e91e63;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.puzzle-piece {
+  width: 100%;
+  height: 100%;
+  background-image: url("firsttext.jpg");
+  background-size: 300px 300px;
+  cursor: grab;
+  border-radius: 4px;
+}
+
+.puzzle-piece.dragging {
+  opacity: 0.5;
+}
+
+
 
     /* ANIMATIONS + FX */
     @keyframes fadeIn {
@@ -418,7 +474,8 @@
       <button class="btn" onclick="openModal()">Memories</button>
       
 	  <button class="btn" onclick="openGift()">🎁 Mazya hya bhavna</button>
-	  <button class="btn" onclick="openFirstMessage()">📱 From where it all started..!</button>
+	 
+<button class="btn" onclick="openPuzzle()">🧩 Click to see our first message but  with a twist</button>
 	  
 </div>
 <div id="firstMessageModal" class="modal">
@@ -455,12 +512,13 @@
     <!-- POLAROID GALLERY -->
   <!-- POLAROID GALLERY -->
 <div class="polaroids" id="polaroidGrid">
+<h2 class="gallery-heading">✨ A Divine Collection of You ✨</h2>
   <div class="polaroid" style="--rot:-6deg">
     <img src="Dipa1.jpg" alt="Dipa 1">
     <div class="caption">❤️</div>
   </div>
   <div class="polaroid" style="--rot:4deg">
-    <img src="dipa2.jpg" alt="Dipa 2">
+    <img src="Dipa2.jpg" alt="Dipa 2">
     <div class="caption">❤️</div>
   </div>
   <div class="polaroid" style="--rot:-3deg">
@@ -496,6 +554,21 @@
     <div class="caption">❤️</div>
   </div>
 </div>
+<!-- Puzzle Modal -->
+<div id="puzzleModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePuzzle()">&times;</span>
+    <h2>🧩 Solve the Puzzle!</h2>
+    <p>Complete the picture to reveal where it started ❤️</p>
+    <div id="puzzle" class="puzzle"></div>
+    <p id="puzzleMessage" style="display:none; font-size:1.2rem; color:#e91e63; margin-top:15px;">
+      🎉 You completed it! You complete me too ❤️ Happy Birthday my Love 🎂💞
+    </p>
+  </div>
+</div>
+
+
+
 
 
   <!-- SPARKLES (auto-generated around card) -->
@@ -509,59 +582,70 @@
       <div class="carousel">
   <button class="prev" onclick="changeSlide(-1)">❮</button>
 
-  <!-- Slide 1 -->
+ 
   <div class="slides">
     <img src="Pahilibhet.jpg" alt="Memory 1">
-    <p>📍 Pune – 15 Jan 2024</p>
+    <p>📍 Pune – 27 July 2024</p>
   </div>
-
-  <!-- Slide 2 -->
-  <div class="slides" style="display:none">
-    <img src="Thane.jpg" alt="Memory 2">
-    <p>📍 Thane Movie Date – 10 Feb 2024</p>
+  
+    <div class="slides">
+    <img src="sakshgandh.jpg" alt="Memory 2">
+    <p>📍 Sakshgandh – 26 Aug 2024</p>
   </div>
-
-  <!-- Slide 3 -->
+  
+ 
   <div class="slides" style="display:none">
-    <img src="vashi.jpg" alt="Memory 3">
-    <p>📍 Vashi Sunset – 25 Mar 2024</p>
+    <img src="Thane.jpg" alt="Memory 3">
+    <p>📍 Thane Movie Date – 19 Oct 2024</p>
+  </div>
+  
+   <div class="slides" style="display:none">
+    <img src="vashi.jpg" alt="Memory 4">
+    <p>📍 Vashi – 14 Dec 2024</p>
+  </div>
+  
+  <div class="slides" style="display:none">
+    <img src="favone.jpg" alt="Memory 5">
+    <p>📍 Our Favourite – 10 May 2025</p>
+  </div>
+  
+   <div class="slides" style="display:none">
+    <img src="travel.jpg" alt="Memory 6">
+    <p>📍 Our First Travel – 14 May 2025</p>
   </div>
 
   <!-- Slide 4 -->
   <div class="slides" style="display:none">
-    <img src="Honeymoon.jpg" alt="Memory 4">
-    <p>📍 Goa Honeymoon – 12 Apr 2024</p>
+    <img src="Honeymoon.jpg" alt="Memory 7">
+    <p>📍 Alibaug Honeymoon – 7 June 2025</p>
   </div>
 
   <!-- Slide 5 -->
   <div class="slides" style="display:none">
-    <img src="TrainJourney.jpg" alt="Memory 5">
-    <p>📍 Train Journey – 1 May 2024</p>
+    <img src="TrainJourney.jpg" alt="Memory 8">
+    <p>📍  First Train Journey – 7 July 2025</p>
   </div>
 
   <!-- Slide 6 -->
   <div class="slides" style="display:none">
-    <img src="krishnakath.jpg" alt="Memory 6">
-    <p>📍 Krishna Kath – 18 Jun 2024</p>
+    <img src="krishnakath.jpg" alt="Memory 9">
+    <p>📍 Krishna Kath – 12 July 2025</p>
   </div>
 
   <!-- Slide 7 -->
   <div class="slides" style="display:none">
-    <img src="amrutwedding.jpg" alt="Memory 7">
-    <p>📍 Amrut’s Wedding – 5 Jul 2024</p>
+    <img src="amrutwedding.jpg" alt="Memory 10">
+    <p>📍 Amrut’s Wedding – 13 July 2025</p>
   </div>
 
   <!-- Slide 8 -->
   <div class="slides" style="display:none">
-    <img src="manglagaur.jpg" alt="Memory 8">
-    <p>📍 Manglagaur – 20 Aug 2024</p>
+    <img src="manglagaur.jpg" alt="Memory 11">
+    <p>📍 Manglagaur – 5 Sept 2025</p>
   </div>
 
   <!-- Slide 9 -->
-  <div class="slides" style="display:none">
-    <img src="favone.jpg" alt="Memory 9">
-    <p>📍 Our Favourite – 15 Sep 2024</p>
-  </div>
+  
 
   <button class="next" onclick="changeSlide(1)">❯</button>
 </div>
@@ -694,19 +778,6 @@ function openModal() {
 
   // start carousel auto-play
   autoPlayTimer = setInterval(() => changeSlide(1), 3500);
-
-  if (birthdaySong.paused) {
-    birthdaySong.play()
-      .then(() => {
-        musicStatus.textContent = "Playing our special song...";
-      })
-      .catch(error => {
-        musicStatus.textContent = "Click ▶️ to play the song";
-        console.warn("Playback prevented:", error);
-      });
-  } else {
-    musicStatus.textContent = "Song is already playing 🎵";
-  }
 }
 
 // ✅ Now outside any function
@@ -764,6 +835,88 @@ function closeGift() {
 
 function openFirstMessage(){ document.getElementById("firstMessageModal").style.display="flex"; }
 function closeFirstMessage(){ document.getElementById("firstMessageModal").style.display="none"; }
+
+function openPuzzle(){
+  document.getElementById("puzzleModal").style.display = "flex";
+  initPuzzle();
+}
+function closePuzzle(){
+  document.getElementById("puzzleModal").style.display = "none";
+}
+
+function initPuzzle(){
+  const puzzle = document.getElementById("puzzle");
+  puzzle.innerHTML = "";
+  const size = 3; // 3x3
+  let order = [];
+  for (let i=0; i<size*size; i++) order.push(i);
+  // shuffle
+  order.sort(()=> Math.random() - 0.5);
+
+  order.forEach((pos, index)=>{
+    const piece = document.createElement("div");
+    piece.className = "puzzle-piece";
+    piece.setAttribute("draggable", "true");
+    piece.dataset.correct = index; // correct index
+    piece.dataset.current = pos;   // current shuffled index
+
+    let x = pos % size;
+    let y = Math.floor(pos / size);
+    piece.style.backgroundPosition = `-${x*100}px -${y*100}px`;
+
+    puzzle.appendChild(piece);
+  });
+
+  enableDragAndDrop();
+}
+
+function enableDragAndDrop(){
+  const pieces = document.querySelectorAll(".puzzle-piece");
+  let dragged = null;
+
+  pieces.forEach(piece=>{
+    piece.addEventListener("dragstart", e=>{
+      dragged = piece;
+      piece.classList.add("dragging");
+    });
+    piece.addEventListener("dragend", e=>{
+      piece.classList.remove("dragging");
+    });
+    piece.addEventListener("dragover", e=>{
+      e.preventDefault();
+    });
+    piece.addEventListener("drop", e=>{
+      e.preventDefault();
+      if(dragged && dragged !== piece){
+        // swap pieces
+        const temp = piece.style.backgroundPosition;
+        piece.style.backgroundPosition = dragged.style.backgroundPosition;
+        dragged.style.backgroundPosition = temp;
+
+        // check solved
+        checkPuzzle();
+      }
+    });
+  });
+}
+
+function checkPuzzle(){
+  const pieces = document.querySelectorAll(".puzzle-piece");
+  let solved = true;
+  pieces.forEach((piece, index)=>{
+    let x = index % 3;
+    let y = Math.floor(index / 3);
+    let correctPos = `-${x*100}px -${y*100}px`;
+    if(piece.style.backgroundPosition !== correctPos){
+      solved = false;
+    }
+  });
+
+  if(solved){
+    document.getElementById("puzzleMessage").style.display = "block";
+  }
+}
+
 
   </script>
 </body>
