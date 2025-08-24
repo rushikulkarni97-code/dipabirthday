@@ -511,7 +511,9 @@ p.lead {
       
 	  <button class="btn" onclick="openGift()">🎁 Mazya hya bhavna</button>
 	 
-<button class="btn" onclick="openPuzzle()">🧩 Click to see our first message but  with a twist</button>
+<button class="btn" onclick="openPuzzle('firsttext.jpg')">🧩 Click to see our first message but  with a twist</button>
+<button class ="btn" onclick="openPuzzle('gift.jpg')">Click to see your gift</button>
+
 	  
 </div>
 <div id="firstMessageModal" class="modal">
@@ -866,15 +868,16 @@ function closeGift() {
 function openFirstMessage(){ document.getElementById("firstMessageModal").style.display="flex"; }
 function closeFirstMessage(){ document.getElementById("firstMessageModal").style.display="none"; }
 
-function openPuzzle(){
+function openPuzzle(imageName){
   document.getElementById("puzzleModal").style.display = "flex";
-  initPuzzle();
+  initPuzzle(imageName);
 }
+
 function closePuzzle(){
   document.getElementById("puzzleModal").style.display = "none";
 }
 
-function initPuzzle(){
+function initPuzzle(imageName){
   const puzzle = document.getElementById("puzzle");
   puzzle.innerHTML = "";
   const size = 3; // 3x3
@@ -887,11 +890,13 @@ function initPuzzle(){
     const piece = document.createElement("div");
     piece.className = "puzzle-piece";
     piece.setAttribute("draggable", "true");
-    piece.dataset.correct = index; // correct index
-    piece.dataset.current = pos;   // current shuffled index
+    piece.dataset.correct = index;
+    piece.dataset.current = pos;
 
     let x = pos % size;
     let y = Math.floor(pos / size);
+    piece.style.backgroundImage = `url("${imageName}")`;
+    piece.style.backgroundSize = "300px 300px";
     piece.style.backgroundPosition = `-${x*100}px -${y*100}px`;
 
     puzzle.appendChild(piece);
@@ -970,6 +975,7 @@ document.addEventListener("click", () => {
   </script>
 </body>
 </html>
+
 
 
 
